@@ -43,6 +43,7 @@ public class CategoryController {
 
         } catch (SQLException ex) {
 
+            ex.printStackTrace();
         }
 
         return null;
@@ -50,6 +51,7 @@ public class CategoryController {
 
     /**
      * Get a category by it's id
+     *
      * @param id category id
      * @return Category or null
      */
@@ -75,5 +77,13 @@ public class CategoryController {
 
         return null;
     }
+
+    public void insertCategory(String category) throws SQLException {
+        PreparedStatement preparedStatement = database.getPreparedStatement("INSERT INTO categories(category_name) VALUES (?)");
+        preparedStatement.setString(1, category);
+        preparedStatement.execute();
+
+    }
+
 
 }

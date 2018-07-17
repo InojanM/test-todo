@@ -70,6 +70,7 @@ public class TodoItem {
 
     /**
      * ToString()
+     *
      * @return a string rep of todoItem
      */
     @Override

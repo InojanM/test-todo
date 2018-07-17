@@ -78,6 +78,7 @@ public class Database {
      * @return prepared statement
      */
     public PreparedStatement getPreparedStatement(String sql) {
+
         if (preparedStatement == null) {
             try {
                 preparedStatement = connection.prepareStatement(sql);

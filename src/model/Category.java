@@ -35,6 +35,6 @@ public class Category {
 
     @Override
     public String toString() {
-        return getCategoryName();
+        return getCategoryName()+" ("+id+")";
     }
 }
