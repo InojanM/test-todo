@@ -12,10 +12,9 @@ public class TestApp {
 
         Database database = new Database("mytodo.db");
 
-        CategoryController categoryController = new CategoryController(database);
-        TodoController todoController = new TodoController(database);
 
-        System.out.println(categoryController.getCategoryByID(2));
+        TodoController todoController = new TodoController(database);
+        todoController.setCompleted(5);
 
     }
 }

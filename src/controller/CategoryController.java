@@ -49,6 +49,16 @@ public class CategoryController {
         return null;
     }
 
+    public void printAllCategories() {
+
+        ArrayList<Category> categories = new ArrayList<>();
+        categories = getAllCategories();
+        for (int i = 0; i < categories.size(); i++) {
+            System.out.println(categories.get(i));
+        }
+    }
+
+
     /**
      * Get a category by it's id
      *

@@ -27,6 +27,8 @@ public class TodoItem {
         setCompleted(completed);
     }
 
+
+
     public int getId() {
         return id;
     }
@@ -75,7 +77,7 @@ public class TodoItem {
      */
     @Override
     public String toString() {
-        return String.format("%s (%s)", getTitle(), getCategory());
+        return getId() + ". " + getTitle();
     }
 
 }

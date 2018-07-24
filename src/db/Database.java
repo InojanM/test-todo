@@ -26,6 +26,14 @@ public class Database {
 
     }
 
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * Execute sql update statements such as INSERT, DELETE, UPDATE
      *
@@ -68,6 +76,7 @@ public class Database {
     public static boolean fileExists(String dbFile) {
         File f = new File(dbFile);
         return f.exists();
+
     }
 
     /**

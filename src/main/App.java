@@ -72,13 +72,8 @@ public class App {
 
     public void appMenu() throws SQLException {
 
-        Database database = new Database(dbFile);
 
-        TodoController todoController = new TodoController(database);
 
-        CategoryController categoryController = new CategoryController(database);
-
-        appMenu.menu();
 
         boolean condition = true;
 
@@ -87,6 +82,15 @@ public class App {
 
         while (condition) {
 
+
+            Database database = new Database(dbFile);
+
+
+            TodoController todoController = new TodoController(database);
+
+            CategoryController categoryController = new CategoryController(database);
+
+            appMenu.menu();
             System.out.print("Enter your choice: ");
             int choice = helperFunction.intRangeValidate(0, 10, helperFunction.intNumberValidate(scanner.nextLine()));
 
@@ -95,8 +99,9 @@ public class App {
                 System.out.println("Enter new category name: ");
                 String category = scanner.nextLine();
                 categoryController.insertCategory(category);
-                System.out.print(categoryController.getAllCategories());
-                appMenu.menu();
+
+                categoryController.printAllCategories();
+
                 System.out.println();
 
             } else if (choice == 2) {
@@ -104,22 +109,43 @@ public class App {
                 System.out.print("Enter your todo item: ");
                 String title = scanner.nextLine();
 
-                System.out.print(categoryController.getAllCategories());
+                System.out.println();
+
+                categoryController.printAllCategories();
                 System.out.println();
                 System.out.print("Choose a category number: ");
                 int category_number = scanner.nextInt();
 
                 todoController.insertTodoItems(title, category_number);
 
-                System.out.println(todoController.getAllTodoItems());
+                todoController.printAllTodo();
 
             } else if (choice == 3) {
 
+                todoController.printAllTodoByCategoryId();
+                System.out.println();
+
             } else if (choice == 4) {
 
+                System.out.println("Choose a completed todo blow todo list");
+                System.out.println();
+                todoController.printAllTodo();
+                System.out.println();
+                int id = helperFunction.intRangeValidate(0, 10, helperFunction.intNumberValidate(scanner.nextLine()));
+
+                todoController.setCompleted(id);
+                todoController.printAllTodoByCategoryId();
+                System.out.println();
+                System.out.println("======================");
+
+                System.out.println();
             } else if (choice == 0) {
                 condition = false;
+
+
             }
+
+            database.closeConnection();
 
         }
     }
